@@ -31,5 +31,4 @@ Complete web system to manage a veterinary clinic. Includes modules for register
 
 ---
 
-## 🧱 Estrutura / Structure
 
