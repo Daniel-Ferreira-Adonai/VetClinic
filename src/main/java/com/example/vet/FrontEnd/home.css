@@ -1,0 +1,411 @@
+/* Reset e base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f5f7f9;
+  color: #2f4f4f;
+  line-height: 1.6;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Sidebar do carrinho */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 100%;
+  background-color: #fff;
+  border-left: 2px solid #ccc;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  z-index: 1000;
+  overflow-y: auto;
+  display: none;
+  transition: transform 0.3s ease;
+}
+
+.sidebar.active {
+  display: block;
+}
+
+.sidebar h2 {
+  margin-top: 0;
+  font-size: 22px;
+  color: #333;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #555;
+}
+
+.sidebar p {
+  font-weight: bold;
+  font-size: 18px;
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 12px;
+  background-color: #27ae60;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.sidebar button:hover {
+  background-color: #219150;
+}
+
+/* Botão "Adicionar" nos cards */
+.card button {
+  margin: 0.5rem 1rem 1rem;
+  padding: 8px;
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  width: calc(100% - 2rem);
+  transition: background-color 0.2s ease;
+}
+
+.card button:hover {
+  background-color: #2471a3;
+}
+
+/* Botão logout */
+#logoutBtn {
+  margin-top: 4px;
+  padding: 4px 10px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Navbar */
+.admin-navbar {
+  background-color: #3fb984;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-size: 0.95rem;
+    z-index: 1001;
+    position: relative; /* ou fixed, se necessário */
+}
+
+.admin-navbar .logo {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.admin-navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.admin-navbar a:hover {
+  color: #e0f5ec;
+}
+
+/* Header */
+header {
+  background-color: #3fb984;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+
+}
+
+/* Layout principal */
+main {
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Navegação por abas */
+main nav {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.tab-btn {
+  padding: 0.6rem 1.2rem;
+  background-color: #3fb984;
+  color: white;
+  border: 2px solid #3fb984;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-btn:hover {
+  background-color: #2e856e;
+  color: white;
+}
+
+.tab {
+  display: none;
+}
+
+.tab.active {
+  display: block;
+}
+
+/* Títulos das seções */
+h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #2e856e;
+  text-align: center;
+}
+
+/* Card container */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* Card padrão */
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: scale(1.015);
+}
+
+.card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.card h3 {
+  margin: 0.8rem 0 0.3rem;
+  color: #2e856e;
+  font-size: 1.1rem;
+}
+
+.card p {
+  padding: 0 1rem;
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 0.4rem;
+}
+
+.card span {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #3fb984;
+  font-size: 1rem;
+}
+
+/* Formulário de agendamento */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-top: 1rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form input,
+form select,
+form textarea,
+form button {
+  font-size: 0.95rem;
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  border-color: #3fb984;
+  outline: none;
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+form button {
+  background-color: #3fb984;
+  color: white;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+form button:hover {
+  background-color: #349f6b;
+}
+
+/* Usuário logado */
+.user-info {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  text-align: right;
+  font-size: 0.9rem;
+  z-index: 1000;
+}
+/* Mini-cards no carrinho */
+.carrinho-item {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.carrinho-item .item-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+.carrinho-item .item-tipo {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.carrinho-item .item-preco,
+.carrinho-item .item-qtd {
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+
+.sidebar {
+  position: absolute;
+  top: 150px;
+  right: 0;
+  width: 280px;
+  background-color: #fff;
+  border-left: 2px solid #ccc;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+  padding: 0px;
+  z-index: 1;
+  overflow-y: auto;
+  display: none;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 1000;
+    overflow-y: auto;
+    display: none;
+    transition:
+      width 0.3s ease,
+      padding 0.3s ease,
+      background-color 0.3s ease,
+      transform 0.3s ease;
+}
+
+
+
+/* Exibir carrinho */
+.sidebar.active {
+  display: block;
+}
+
+/* Sidebar retraída com animação */
+.sidebar.retraida {
+  width: 60px;
+  padding: 8px 6px;
+  overflow-x: hidden;
+}
+
+.sidebar.retraida h2,
+.sidebar.retraida p,
+.sidebar.retraida button,
+.sidebar.retraida ul {
+  opacity: 0;
+  pointer-events: none;
+  height: 0;
+  transform: scaleY(0.95);
+  transition: all 0.2s ease;
+}
+
+.sidebar h2,
+.sidebar p,
+.sidebar button,
+.sidebar ul {
+  transition: all 0.3s ease;
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.user-info button {
+  margin-top: 5px;
+  padding: 5px 10px;
+  background-color: #c0392b;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}

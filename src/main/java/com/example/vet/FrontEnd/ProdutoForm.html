@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Produtos</title>
+    <link rel="stylesheet" href="produtoForm.css" />
+</head>
+<body>
+<header>
+    <h1>Gerenciar Produtos</h1>
+    <nav class="admin-navbar">
+        <div class="logo">🐾 Vida Animal</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="AnimalForm.html">Animais</a></li>
+            <li><a href="tutorForm.html">Tutores</a></li>
+            <li><a href="ProdutoForm.html">Produtos</a></li>
+            <li><a href="ServicoForm.html">Serviços</a></li>
+            <li><a href="Appointment.html">Consultas</a></li>
+            <li class='login-logout'><a href="login.html">Login</a></li>
+
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section id="produtos-container"></section>
+
+    <button id="addProductBtn">＋</button>
+
+    <div id="modalForm" class="modal hidden">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2 id="form-title">Adicionar Produto</h2>
+            <form id="produtoForm">
+                <input type="hidden" id="id" name="id" />
+                <input type="text" id="name" placeholder="Nome do Produto" required />
+                <textarea id="description" placeholder="Descrição" required></textarea>
+                <input type="number" id="price" placeholder="Preço (R$)" step="0.01" required />
+                <input type="number" id="quantity" placeholder="Quantidade em Estoque" required />
+                <input type="url" id="url" placeholder="URL da Imagem" required />
+                <button type="submit">Salvar</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<script src="produtoForm.js"></script>
+</body>
+</html>

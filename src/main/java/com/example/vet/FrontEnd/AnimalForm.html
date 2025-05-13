@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard de Animais</title>
+    <link rel="stylesheet" href="animalForm.css" />
+</head>
+<body>
+<header>
+    <h1>Gerenciar Animais</h1>
+    <nav class="admin-navbar">
+        <div class="logo">🐾 Vida Animal</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="AnimalForm.html">Animais</a></li>
+            <li><a href="tutorForm.html">Tutores</a></li>
+            <li><a href="ProdutoForm.html">Produtos</a></li>
+            <li><a href="ServicoForm.html">Serviços</a></li>
+            <li><a href="Appointment.html">Consultas</a></li>
+            <li class='login-logout'><a href="login.html">Login</a></li>
+
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section id="animais-container"></section>
+
+    <button id="addAnimalBtn">＋</button>
+
+    <div id="modalForm" class="modal hidden">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2 id="form-title">Adicionar Animal</h2>
+            <form id="animalForm">
+                <input type="hidden" id="id_animal" name="id_animal" />
+                <input type="text" name="name" id="nome" placeholder="Nome" required />
+                <input type="text" name="especie" id="especie" placeholder="Espécie" required />
+                <input type="text" name="breedType" id="raca" placeholder="Raça" required />
+                <div id="emailTutorGroup">
+                    <input type="email" name="emailTutor" id="emailTutor" placeholder="Email do Tutor"/>
+                </div>
+                <button type="submit">Salvar</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<script src="animalForm.js"></script>
+</body>
+</html>

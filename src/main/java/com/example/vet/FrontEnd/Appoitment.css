@@ -1,0 +1,193 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f9f6;
+      color: #2f4f4f;
+      line-height: 1.6;
+    }
+#logoutBtn{
+  margin-top: 4px;
+  padding: 4px 10px;
+  background-color: Red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+    font-weight: bold;
+
+          }
+          .hidden {
+            display: none !important;
+          }
+    header {
+      background-color: #3fb984;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 600;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    main {
+      padding: 2rem 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    #consultas-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .consulta-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 1rem;
+      width: 280px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .consulta-card h3 {
+      color: #2e856e;
+    }
+
+    .consulta-card button {
+      padding: 0.4rem 0.8rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .edit {
+      background: #4cb8ac;
+      color: white;
+    }
+
+    .delete {
+      background: #ff6b6b;
+      color: white;
+    }
+
+    #addConsultaBtn {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      background: #2ecc71;
+      color: white;
+      font-size: 1.8rem;
+      border: none;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .modal.hidden {
+      display: none;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+      width: 100%;
+      max-width: 420px;
+      position: relative;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 1rem;
+      color: #3fb984;
+      font-size: 1.4rem;
+      text-align: center;
+    }
+.admin-navbar {
+  background-color: #3fb984;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-size: 0.95rem;
+}
+
+.admin-navbar .logo {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.admin-navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.admin-navbar a:hover {
+  color: #e0f5ec;
+}
+    .modal-content input,
+    .modal-content textarea {
+      width: 100%;
+      margin-bottom: 1rem;
+      padding: 0.7rem;
+      font-size: 1rem;
+      border: 1px solid #b2dfdb;
+      border-radius: 8px;
+    }
+
+    .modal-content button {
+      width: 100%;
+      padding: 0.8rem;
+      background: #3fb984;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: #aaa;
+    }

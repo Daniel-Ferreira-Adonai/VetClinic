@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clínica Veterinária</title>
+    <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+<header>
+    <h1>Clínica Veterinária Vida Animal</h1>
+
+
+    <nav class="admin-navbar">
+        <div class="logo">🐾 Vida Animal</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="AnimalForm.html">Animais</a></li>
+            <li><a href="tutorForm.html">Tutores</a></li>
+            <li><a href="ProdutoForm.html">Produtos</a></li>
+            <li><a href="ServicoForm.html">Serviços</a></li>
+            <li><a href="Appointment.html">Consultas</a></li>
+            <li class='login-logout'><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+</header>
+<div id="carrinho-sidebar" class="sidebar">
+    <h2>Carrinho</h2>
+    <ul id="itens-carrinho"></ul>
+    <p>Total: R$ <span id="total-carrinho">0.00</span></p>
+    <button onclick="finalizarCompra()">Finalizar Compra</button>
+</div>
+
+<main>
+    <nav>
+        <button class="tab-btn" data-tab="services">Serviços</button>
+        <button class="tab-btn" data-tab="products">Produtos</button>
+        <button class="tab-btn" data-tab="appointments">Agendar Consulta</button>
+    </nav>
+
+    <section id="services" class="tab active">
+        <h2>Nossos Serviços</h2>
+        <div class="card-container" id="servicos-container"></div>
+    </section>
+
+    <section id="products" class="tab">
+        <h2>Produtos</h2>
+        <div class="card-container" id="produtos-container"></div>
+    </section>
+
+    <section id="appointments" class="tab">
+        <h2>Agende uma Consulta</h2>
+        <form id="appointmentForm">
+            <div id="emailGroup">
+                <input type="email" id="emailTutor" placeholder="Digite seu e-mail" required />
+            </div>
+            <select id="animalSelect">
+                <option disabled selected>Selecione seu animal</option>
+            </select>
+            <input type="datetime-local" required />
+            <input type="text" placeholder="Veterinário desejado" />
+            <textarea placeholder="Motivo da consulta"></textarea>
+            <button type="submit">Agendar</button>
+        </form>
+    </section>
+</main>
+
+<script src="home.js"></script>
+
+</body>
+</html>

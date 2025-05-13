@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultas</title>
+    <link rel="stylesheet" href="Appoitment.css">
+</head>
+<body>
+<header>
+    <h1>Gerenciar Consultas</h1>
+    <nav class="admin-navbar">
+        <div class="logo">🐾 Vida Animal</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="AnimalForm.html">Animais</a></li>
+            <li><a href="tutorForm.html">Tutores</a></li>
+            <li><a href="ProdutoForm.html">Produtos</a></li>
+            <li><a href="ServicoForm.html">Serviços</a></li>
+            <li><a href="Appointment.html">Consultas</a></li>
+            <li class='login-logout'><a href="login.html">Login</a></li>
+
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section id="consultas-container"></section>
+    <button id="addConsultaBtn">＋</button>
+
+    <div id="modalForm" class="modal hidden">
+        <div class="modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2 id="form-title">Nova Consulta</h2>
+            <form id="consultaForm">
+                <input type="hidden" id="id" name="id" />
+                <input type="number" id="id_animal" placeholder="ID do Animal" required />
+                <input type="text" id="tutorComplaint" placeholder="Queixa do Tutor" required />
+                <input type="datetime-local" id="date_time" required />
+                <input type="text" id="vet_name" placeholder="Nome do Veterinário" required />
+                <div id="diagnosticoGroup">
+                    <label for="diagnosis">Diagnóstico</label>
+                    <textarea id="diagnosis" name="diagnosis"></textarea>
+                </div>
+                <button type="submit">Salvar</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<script src="Appointment.js"></script>
+</body>
+</html>
