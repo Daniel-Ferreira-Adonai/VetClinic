@@ -14,7 +14,7 @@ const formTitle = document.getElementById("form-title");
   if (!loginLogoutLi) return;
 
   const menuItems = document.querySelectorAll(".admin-navbar ul li");
-
+  const number = 69;
   if (!usuario) {
     menuItems.forEach(li => {
       const link = li.querySelector("a");
