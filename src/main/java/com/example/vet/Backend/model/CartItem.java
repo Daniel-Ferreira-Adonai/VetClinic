@@ -1,9 +1,9 @@
 package com.example.vet.Backend.model;
 
 public class CartItem {
-    private int id; // product or service ID
+    private int id; 
     private String name;
-    private String type; // "product" or "service"
+    private String type;
     private double price;
     private int quantity;
 

@@ -19,7 +19,8 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
     phone: telefone,
     type: "TUTOR"
   };
-console.log("Payload enviado para o backend:", userPayload);
+
+  console.log("Payload enviado para o backend:", userPayload);
 
   try {
     const userRes = await fetch("http://localhost:8080/api/usuarios", {
@@ -34,7 +35,26 @@ console.log("Payload enviado para o backend:", userPayload);
       return;
     }
 
+    // ✅ Novo passo: cadastrar o tutor
+    const tutorPayload = {
+      name: nome,
+      email: email,
+      phone: telefone
+    };
 
+    const tutorRes = await fetch("http://localhost:8080/api/tutores", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(tutorPayload)
+    });
+
+    if (!tutorRes.ok) {
+      const errorText = await tutorRes.text();
+      alert("Usuário cadastrado, mas erro ao cadastrar tutor:\n" + errorText);
+      return;
+    }
+
+    // Redirecionar se tudo der certo
     window.location.href = "login.html";
 
   } catch (err) {

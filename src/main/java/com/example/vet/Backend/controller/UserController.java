@@ -19,6 +19,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private TutorService tutorService;
+
     @PostMapping
     public ResponseEntity<String> insert(@RequestBody Map<String, String> body) {
         try {
@@ -26,8 +29,6 @@ public class UserController {
             UserType typeEnum = UserType.valueOf(type.toUpperCase());
             User user = new User(body.get("name"), body.get("email"), body.get("password"), typeEnum);
             userService.insert(user);
-            TutorService tutorService = new TutorService();
-            tutorService.insert(new Tutor(body.get("name"),body.get("email"),body.get("phone")));
             return ResponseEntity.ok("User registred with success");
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body("Erro: " + e.getMessage());
