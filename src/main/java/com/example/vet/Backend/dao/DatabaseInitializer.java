@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseInitializer {
-
+    // : (
     private static final String ROOT_URL = "jdbc:mysql://localhost:3306/?user=root&password=";
     private static final String DB_URL = "jdbc:mysql://localhost:3306/clinicaVeterinaria";
     private static final String USER = "root";
@@ -131,7 +131,6 @@ public class DatabaseInitializer {
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASSWORD);
              Statement stmt = conn.createStatement()) {
 
-            // Inserir tutor (usuario e tutor)
             stmt.executeUpdate("""
                 INSERT IGNORE INTO usuarios (nome, email, senha, tipo_usuario)
                 VALUES ('Tutor Teste', 'tutor@teste.com', 'tutor123', 'TUTOR');
@@ -142,13 +141,11 @@ public class DatabaseInitializer {
                 VALUES ('Tutor Teste', '88999999999', 'tutor@teste.com');
             """);
 
-            // Inserir vet
             stmt.executeUpdate("""
                 INSERT IGNORE INTO usuarios (nome, email, senha, tipo_usuario)
                 VALUES ('Vet Teste', 'vet@teste.com', 'vet123', 'VET');
             """);
 
-            // Inserir admin
             stmt.executeUpdate("""
                 INSERT IGNORE INTO usuarios (nome, email, senha, tipo_usuario)
                 VALUES ('Admin Teste', 'admin@teste.com', 'admin123', 'ADMIN');

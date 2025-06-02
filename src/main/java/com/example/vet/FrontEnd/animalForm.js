@@ -6,6 +6,8 @@ const addBtn = document.getElementById("addAnimalBtn");
 const closeBtn = document.getElementById("closeModal");
 const formTitle = document.getElementById("form-title");
 
+let isEditing = false;
+let enviando = false; // flag para prevenir envio duplicado
 
 (function configurarLoginLogout() {
   const usuario = JSON.parse(localStorage.getItem("usuario"));
@@ -33,7 +35,6 @@ const formTitle = document.getElementById("form-title");
   }
 
   const tipo = usuario.tipo;
-
   const permitidoParaVetETutor = [
     "index.html",
     "AnimalForm.html",
@@ -44,7 +45,6 @@ const formTitle = document.getElementById("form-title");
   menuItems.forEach(li => {
     const link = li.querySelector("a");
     if (!link) return;
-
     const href = link.getAttribute("href");
 
     if (tipo !== "ADMIN" && !permitidoParaVetETutor.includes(href)) {
@@ -74,51 +74,39 @@ const formTitle = document.getElementById("form-title");
 document.addEventListener("DOMContentLoaded", () => {
   const usuario = JSON.parse(localStorage.getItem("usuario"));
   if (usuario?.tipo === "TUTOR") {
-    const emailGroup = document.getElementById("emailTutorGroup");
-    const emailInput = document.getElementById("emailTutor");
-    if (emailGroup && emailInput) {
-      emailInput.removeAttribute("required");
-      emailGroup.classList.add("hidden");
-    }
+    document.getElementById("emailTutorGroup")?.classList.add("hidden");
+    document.getElementById("emailTutor")?.removeAttribute("required");
   }
+
+  carregarAnimais();
 });
 
-
-
-
-
-
-
-let isEditing = false;
-
 function carregarAnimais() {
-    const usuario = JSON.parse(localStorage.getItem("usuario"));
-    const tipo = usuario?.tipo;
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
+  const tipo = usuario?.tipo;
 
-    const url = (tipo === "TUTOR")
-        ? `${apiUrl}/by-tutor-email?email=${encodeURIComponent(usuario.email)}`
-        : apiUrl;
+  const url = (tipo === "TUTOR")
+    ? `${apiUrl}/by-tutor-email?email=${encodeURIComponent(usuario.email)}`
+    : apiUrl;
 
-    fetch(url)
-        .then(res => res.json())
-        .then(animais => {
-            container.innerHTML = "";
-            animais.forEach(animal => {
-                const card = document.createElement("div");
-                card.className = "animal-card";
-                card.innerHTML = `
-                    <h3>${animal.name}</h3>
-                    <p>Espécie: ${animal.especie}</p>
-                    <p>Raça: ${animal.breedType}</p>
-                    <button class="edit" onclick="editarAnimal(${animal.id}, '${animal.name}', '${animal.especie}', '${animal.breedType}', ${animal.tutor_id})">Editar</button>
-                    <button class="delete" onclick="deletarAnimal(${animal.id})">Excluir</button>
-                `;
-                container.appendChild(card);
-            });
-        });
+  fetch(url)
+    .then(res => res.json())
+    .then(animais => {
+      container.innerHTML = "";
+      animais.forEach(animal => {
+        const card = document.createElement("div");
+        card.className = "animal-card";
+        card.innerHTML = `
+          <h3>${animal.name}</h3>
+          <p>Espécie: ${animal.especie}</p>
+          <p>Raça: ${animal.breedType}</p>
+          <button class="edit" onclick="editarAnimal(${animal.id}, '${animal.name}', '${animal.especie}', '${animal.breedType}', ${animal.tutor_id})">Editar</button>
+          <button class="delete" onclick="deletarAnimal(${animal.id})">Excluir</button>
+        `;
+        container.appendChild(card);
+      });
+    });
 }
-
-
 
 window.editarAnimal = (id, nome, especie, raca, tutor_id) => {
   isEditing = true;
@@ -128,30 +116,26 @@ window.editarAnimal = (id, nome, especie, raca, tutor_id) => {
   form.nome.value = nome;
   form.especie.value = especie;
   form.raca.value = raca;
-
   form.setAttribute("data-tutor-id", tutor_id);
 
   const emailGroup = document.getElementById("emailTutorGroup");
   const emailInput = document.getElementById("emailTutor");
-  if (emailGroup) emailGroup.classList.add("hidden");
-  if (emailInput) emailInput.removeAttribute("required");
+  emailGroup?.classList.add("hidden");
+  emailInput?.removeAttribute("required");
 };
-
-
 
 window.deletarAnimal = (id) => {
-    if (confirm("Deseja realmente excluir este animal?")) {
-        fetch(`${apiUrl}/${id}`, {
-            method: "DELETE"
-        }).then(() => carregarAnimais());
-    }
+  if (confirm("Deseja realmente excluir este animal?")) {
+    fetch(`${apiUrl}/${id}`, { method: "DELETE" })
+      .then(() => carregarAnimais());
+  }
 };
-if (JSON.parse(localStorage.getItem("usuario"))?.tipo === "TUTOR") {
-    document.getElementById("emailTutorGroup")?.classList.add("hidden");
-}
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+
+  if (enviando) return;
+  enviando = true;
 
   const usuario = JSON.parse(localStorage.getItem("usuario"));
   const tipo = usuario?.tipo;
@@ -173,6 +157,7 @@ form.addEventListener("submit", async (e) => {
       const tutor = JSON.parse(localStorage.getItem("tutor"));
       if (!tutor?.email) {
         alert("Erro: email do tutor não encontrado.");
+        enviando = false;
         return;
       }
       data.emailTutor = tutor.email;
@@ -180,6 +165,7 @@ form.addEventListener("submit", async (e) => {
       const emailInput = document.getElementById("emailTutor");
       if (!emailInput?.value) {
         alert("Por favor, preencha o email do tutor.");
+        enviando = false;
         return;
       }
       data.emailTutor = emailInput.value.trim();
@@ -188,7 +174,7 @@ form.addEventListener("submit", async (e) => {
 
   try {
     await fetch(apiUrl, {
-      method: method,
+      method,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
     });
@@ -199,11 +185,10 @@ form.addEventListener("submit", async (e) => {
     carregarAnimais();
   } catch (err) {
     alert("Erro ao enviar dados: " + err.message);
+  } finally {
+    enviando = false;
   }
 });
-
-
-
 
 addBtn.addEventListener("click", () => {
   form.reset();
@@ -218,19 +203,17 @@ addBtn.addEventListener("click", () => {
   const emailInput = document.getElementById("emailTutor");
 
   if (tipo === "TUTOR") {
-    if (emailGroup) emailGroup.classList.add("hidden");
-    if (emailInput) emailInput.removeAttribute("required");
+    emailGroup?.classList.add("hidden");
+    emailInput?.removeAttribute("required");
   } else {
-    if (emailGroup) emailGroup.classList.remove("hidden");
-    if (emailInput) emailInput.setAttribute("required", "required");
+    emailGroup?.classList.remove("hidden");
+    emailInput?.setAttribute("required", "required");
   }
 
   delete form.dataset.tutorId;
 });
 
 closeBtn.addEventListener("click", () => {
-    modal.classList.add("hidden");
-    isEditing = false;
+  modal.classList.add("hidden");
+  isEditing = false;
 });
-
-carregarAnimais();

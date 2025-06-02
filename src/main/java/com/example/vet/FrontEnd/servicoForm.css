@@ -10,7 +10,17 @@ body {
   color: #2f4f4f;
   line-height: 1.6;
 }
+#logoutBtn{
+  margin-top: 4px;
+  padding: 4px 10px;
+  background-color: Red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+    font-weight: bold;
 
+          }
 header {
   background-color: #3fb984;
   color: white;

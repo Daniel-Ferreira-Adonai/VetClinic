@@ -15,11 +15,11 @@ public class UserService {
 
     public void insert(User user) {
         if (user.getEmail() == null || user.getPassword() == null || user.getType() == null) {
-            throw new IllegalArgumentException("Campos obrigatórios ausentes.");
+            throw new IllegalArgumentException("Obrig fields.");
         }
 
         if (userDAO.emailExists(user.getEmail())) {
-            throw new IllegalArgumentException("E-mail já cadastrado.");
+            throw new IllegalArgumentException("E-mail alredy registred.");
         }
 
         userDAO.insert(user);

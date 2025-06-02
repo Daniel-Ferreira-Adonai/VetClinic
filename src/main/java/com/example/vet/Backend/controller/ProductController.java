@@ -32,6 +32,7 @@ public class ProductController {
                     Integer.parseInt(body.get("quantity")),
                     body.get("url")
             );
+
             productService.insert(p);
             return ResponseEntity.ok("Product registred with success.");
         } catch (IllegalArgumentException e) {
